@@ -40,11 +40,8 @@ public class Program {
 
 			list.forEach(System.out::println);
 
-			List<Employee> newList = emp.stream().filter(x -> x.getName().charAt(0) == 'M').collect(Collectors.toList());
-			double sum = 0;
-			for (Employee a : newList) {
-				sum = sum + a.getSalary();
-			}
+			double sum = emp.stream().filter(x -> x.getName().charAt(0) == 'M').map(x -> x.getSalary()).reduce(0.0, (x, y) -> x + y);
+			
 			System.out.println();
 			System.out.println("Sum of salary of people whose name starts with 'M': " + String.format("%.2f", sum));
 
